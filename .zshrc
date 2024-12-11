@@ -39,7 +39,7 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
 # env vars
-export $(envsubst < .env)
+export $(envsubst < ~/.env)
 
 # HISTORY
 HISTSIZE=5000
@@ -74,3 +74,5 @@ alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ll -a'
 
+# keybind
+bindkey "^[[3~" delete-char
