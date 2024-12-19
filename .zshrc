@@ -13,7 +13,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 # Shell integrations
 # inicialize OMP
-eval "$(oh-my-posh init zsh --config 'https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_mocha.omp.json')" 
+#eval "$(oh-my-posh init zsh --config 'https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_mocha.omp.json')" 
+
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/catppuccin_mocha.omp_dif.json)" 
 
 eval "$(fzf --zsh)" # fuzzy finding
 eval "$(zoxide init --cmd cd zsh)" #better cd
