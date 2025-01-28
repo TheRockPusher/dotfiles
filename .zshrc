@@ -41,7 +41,7 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
 # env vars
-export $(envsubst < ~/.env)
+export $(envsubst < ~/.env_shared)
 
 # HISTORY
 HISTSIZE=5000
