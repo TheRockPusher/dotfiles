@@ -1,3 +1,5 @@
+unset MAIL             # completely remove the MAIL variable
+
 # Create Zinit dir 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -27,7 +29,6 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-zinit snippet OMZP::git ## add OMZ git plugin
 zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::command-not-found
 
@@ -73,8 +74,20 @@ fi
 
 # Aliases
 alias ls='ls --color=auto'
-alias ll='ls -l'
-alias la='ll -a'
+alias ll='ls -lh'
+alias la='ll -A'
 
-# keybind
+alias gs="git status --short"
+alias gd="git diff"
+alias ga="git add"
+alias gap="git add --patch"
+alias gch="git checkout"
+alias gc="git commit"
+alias gp="git push"
+alias gu="git pull"
+alias gl="git log"
+alias gb="git branch"
+alias gcl="git clone"
+
+#keybind
 bindkey "^[[3~" delete-char
