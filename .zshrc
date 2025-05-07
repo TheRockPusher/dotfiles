@@ -62,8 +62,13 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}' #case insensitive completion 
 zstyle ':completion:*' menu no #using fzf
 
+# fuzzy finder on tab
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Diff so fancy
+zinit ice lucid as"program" pick"bin/git-dsf"
+zinit load so-fancy/diff-so-fancy
 
 
 #  UWSM launch
@@ -82,10 +87,10 @@ alias gd="git diff"
 alias ga="git add"
 alias gap="git add --patch"
 alias gch="git checkout"
-alias gc="git commit"
+alias gc="git commit --verbose"
 alias gp="git push"
 alias gu="git pull"
-alias gl="git log"
+alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n"'
 alias gb="git branch"
 alias gcl="git clone"
 
