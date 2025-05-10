@@ -9,7 +9,7 @@
 	showStash = true
 
 [commit]
-	template = .config/git/template
+	template = ~/.config/git/template
 
 [diff]
 	context = 3
