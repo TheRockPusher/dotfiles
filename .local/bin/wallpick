@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+WALLDIR="$HOME/Pictures/Wallpaper"
+MON=DP-2
+
+# build map: short name → full path
+mapfile -t FILES < <(find "$WALLDIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \) | sort)
+
+# present only base names to user
+CHOICE=$(printf '%s\n' "${FILES[@]##*/}" | fuzzel --dmenu --prompt "Wallpaper> ") || exit 0
+[ -z "$CHOICE" ] && exit 0
+
+# resolve back to full path
+for f in "${FILES[@]}"; do
+    [ "$(basename "$f")" = "$CHOICE" ] && SEL="$f" && break
+done
+
+hyprctl hyprpaper preload "$SEL"
+hyprctl hyprpaper wallpaper "$MON,$SEL"
