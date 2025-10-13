@@ -1,0 +1,105 @@
+@import "mocha.css";
+
+/* ===== Base ===== */
+* {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+}
+
+window#waybar {
+  background-color: alpha(@mantle,0.85);
+  color: @text;
+  border: 1px solid @lavender;
+}
+
+/* ===== Normal modules ===== */
+#window, #mpd, #pulseaudio, #network, #tray, #idle_inhibitor, #clock, #language {
+  margin: 4px 6px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background-color: @crust;
+  color: @text;
+  border: 1px solid @overlay0;
+}
+
+#clock      { color: @blue; }
+#pulseaudio { color: @green; }
+#network    { color: @sapphire; }
+#mpd        { color: @pink; }
+
+/* ===== Workspaces ===== */
+#workspaces button {
+  padding: 2px 10px;
+  margin: 6px 4px;
+  border-radius: 8px;
+  background-color: transparent;
+  color: @subtext0;
+  border: 1px solid transparent;
+}
+
+#workspaces button.active { background-color: @lavender; color: @base; }
+#workspaces button.urgent { background-color: @red; color: @base; }
+#workspaces button:hover  { background-color: @overlay0; color: @base; }
+
+/* ===== Resources unified pill ===== */
+/* Target the group box directly - from GTK widget tree: box#resources */
+box#resources {
+  margin: 4px 6px;
+  padding: 4px;
+  border-radius: 12px;
+  background-color: @surface0;
+  border: 1px solid @overlay0;
+}
+
+/* Style the modules inside the group */
+box#resources #cpu,
+box#resources #memory,
+box#resources #temperature {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 4px 12px;
+  border-radius: 0;
+}
+
+/* Add separators between modules */
+box#resources #memory {
+  border-left: 1px solid @overlay0;
+}
+
+box#resources #temperature {
+  border-left: 1px solid @overlay0;
+}
+
+/* Module colors for resources */
+box#resources #cpu         { color: @mauve; }
+box#resources #memory      { color: @sky; }
+box#resources #temperature { color: @peach; }
+
+box#resources #temperature.critical {
+  color: @base;
+  background-color: @red;
+  border-radius: 8px;
+  padding: 4px 12px;
+  margin: 0 4px;
+}
+
+/* ===== States ===== */
+#pulseaudio.muted         { color: @overlay1; }
+#network.disconnected     { color: @red; }
+#idle_inhibitor.activated { color: @green; }
+
+/* ===== Tray ===== */
+#tray { 
+  background-color: transparent;
+  margin: 4px 6px;
+}
+
+/* ===== Tooltips ===== */
+tooltip {
+  background-color: @base;
+  color: @text;
+  border: 1px solid @overlay0;
+  border-radius: 8px;
+  padding: 6px 8px;
+}
