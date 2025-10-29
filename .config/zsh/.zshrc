@@ -42,7 +42,7 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
 # env vars
-export $(envsubst < ~/.env_shared)
+source ~/.env_shared
 
 # HISTORY
 HISTSIZE=5000
@@ -71,12 +71,6 @@ zinit ice lucid as"program" pick"bin/git-dsf"
 zinit load so-fancy/diff-so-fancy
 
 
-#  UWSM launch
-if uwsm check may-start && uwsm select; then
-	exec systemd-cat -t uwsm_start uwsm start default
-fi
-
-
 # Aliases
 alias ls='ls --color=auto'
 alias ll='ls -lh'
@@ -96,3 +90,4 @@ alias gcl="git clone"
 
 #keybind
 bindkey "^[[3~" delete-char
+
