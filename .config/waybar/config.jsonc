@@ -18,7 +18,6 @@
         "pulseaudio",
         "network",
         "group/resources",
-        "hyprland/language",
         "clock",
         "tray",
         "group/system"
@@ -46,7 +45,7 @@
 	     "2": "2",
 	     "3": "3",
 	     "4": "4",
-             "5": "",
+             "5": "5",
              "active": "",
 	     "urgent": ""
              //"focused": ""
