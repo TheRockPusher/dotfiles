@@ -1,5 +1,6 @@
 unset MAIL             # completely remove the MAIL variable
 
+export PATH=$PATH:$HOME/.local/share/go/bin
 # Create Zinit dir 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
