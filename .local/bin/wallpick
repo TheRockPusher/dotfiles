@@ -11,8 +11,7 @@ CHOICE=$(printf '%s\n' "${FILES[@]##*/}" | fuzzel --dmenu --prompt "Wallpaper> "
 
 # resolve back to full path
 for f in "${FILES[@]}"; do
-    [ "$(basename "$f")" = "$CHOICE" ] && SEL="$f" && break
+    [[ "$(basename "$f")" == "$CHOICE" ]] && SEL="$f" && break
 done
 
-hyprctl hyprpaper preload "$SEL"
-hyprctl hyprpaper wallpaper "$MON,$SEL"
+hyprctl hyprpaper wallpaper "$MON, $SEL"
