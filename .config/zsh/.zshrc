@@ -1,6 +1,8 @@
 unset MAIL             # completely remove the MAIL variable
 
 export PATH=$PATH:$HOME/.local/share/go/bin
+
+export PATH="$HOME/.local/share/npm-global/bin:$PATH"
 # Create Zinit dir 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -73,6 +75,7 @@ zinit load so-fancy/diff-so-fancy
 alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias la='ll -A'
+alias grep='grep --color=auto'
 
 alias gs="git status --short"
 alias gd="git diff"
