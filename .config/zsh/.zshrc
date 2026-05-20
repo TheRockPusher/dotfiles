@@ -36,7 +36,7 @@ zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::command-not-found
 
 # Load completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -C
 zinit cdreplay -q
 
 
@@ -94,3 +94,7 @@ alias gcl="git clone"
 bindkey "^[[3~" delete-char
 
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
