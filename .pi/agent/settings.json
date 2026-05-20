@@ -1,0 +1,35 @@
+{
+  "lastChangelogVersion": "0.75.3",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "low",
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "enableInstallTelemetry": false,
+  "packages": [
+    "npm:@latentminds/pi-quotas",
+    "npm:pi-web-access",
+    {
+      "source": "npm:@ifi/oh-pi-themes",
+      "themes": [
+        "+themes/tokyo-night.json"
+      ]
+    },
+    {
+      "source": "npm:pi-guard-sandbox",
+      "extensions": [
+        "+index.ts"
+      ]
+    },
+    {
+      "source": "npm:@juicesharp/rpiv-ask-user-question",
+      "extensions": [
+        "+index.ts"
+      ]
+    }
+  ],
+  "theme": "catppuccin-mocha-readable",
+  "treeFilterMode": "default",
+  "shellCommandPrefix": "source ~/.bashrc"
+}
