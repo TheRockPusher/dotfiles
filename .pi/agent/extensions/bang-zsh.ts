@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { spawn, spawnSync } from "node:child_process";
 import type { BashOperations, ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
-const DEFAULT_SHELL = "/usr/bin/zsh";
+const DEFAULT_SHELL = process.platform === "darwin" ? "/bin/zsh" : "/usr/bin/zsh";
 const SHELL_ENV_VAR = "PI_BANG_SHELL";
 const USE_PTY_ENV_VAR = "PI_BANG_USE_PTY";
 
@@ -32,8 +32,20 @@ function shellQuote(value: string) {
 
 function resolveScriptPath() {
   if (process.env[USE_PTY_ENV_VAR] === "0") return undefined;
+  // macOS/BSD script(1) has different flags from util-linux and emits a
+  // leading ^D\b\b when stdin is closed. Prefer the direct interactive shell
+  // path on macOS unless PTY use is explicitly requested.
+  if (process.platform === "darwin" && process.env[USE_PTY_ENV_VAR] !== "1") return undefined;
   const result = spawnSync("sh", ["-c", "command -v script"], { encoding: "utf8" });
   return result.status === 0 ? result.stdout.trim().split(/\r?\n/)[0] : undefined;
+}
+
+function scriptArgs(shellPath: string, command: string) {
+  if (process.platform === "darwin") {
+    return ["-q", "/dev/null", shellPath, "-i", "-c", command];
+  }
+
+  return ["-q", "-e", "-c", `${shellQuote(shellPath)} -i -c ${shellQuote(command)}`, "/dev/null"];
 }
 
 function createInteractiveShellOperations(shellPath: string): BashOperations {
@@ -53,7 +65,7 @@ function createInteractiveShellOperations(shellPath: string): BashOperations {
 
         const usePty = scriptPath && existsSync(scriptPath);
         const child = usePty
-          ? spawn(scriptPath, ["-q", "-e", "-c", `${shellQuote(shellPath)} -i -c ${shellQuote(command)}`, "/dev/null"], {
+          ? spawn(scriptPath, scriptArgs(shellPath, command), {
               cwd,
               detached: process.platform !== "win32",
               env: { ...process.env, ...env, SHELL: shellPath },
@@ -89,7 +101,7 @@ function createInteractiveShellOperations(shellPath: string): BashOperations {
         const handleData = (data: Buffer) => {
           // util-linux script emits CRLF because it allocates a pseudo-TTY.
           // Normalize it before Pi captures/displays the output.
-          onData(Buffer.from(data.toString("utf8").replace(/\r\n/g, "\n").replace(/\r/g, "\n")));
+          onData(Buffer.from(data.toString("utf8").replace(/^\x04\b\b/, "").replace(/\r\n/g, "\n").replace(/\r/g, "\n")));
         };
 
         child.stdout?.on("data", handleData);
