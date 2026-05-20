@@ -27,7 +27,8 @@
       "extensions": [
         "+index.ts"
       ]
-    }
+    },
+    "npm:@juicesharp/rpiv-voice"
   ],
   "theme": "catppuccin-mocha-readable",
   "treeFilterMode": "default",
