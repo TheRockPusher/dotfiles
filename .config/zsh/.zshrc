@@ -37,8 +37,9 @@ zinit snippet OMZP::command-not-found
 
 # Load completions
 autoload -Uz compinit && compinit
-
 zinit cdreplay -q
+
+
 
 #keybindings
 bindkey '^p' history-search-backward
@@ -91,4 +92,5 @@ alias gcl="git clone"
 
 #keybind
 bindkey "^[[3~" delete-char
+
 
