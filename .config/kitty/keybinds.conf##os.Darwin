@@ -52,3 +52,6 @@ map ctrl+shift+backspace change_font_size all 0
 map ctrl+shift+f5 load_config_file
 map ctrl+shift+f11 toggle_fullscreen
 map ctrl+l send_text normal,application \x0c
+
+# === MAC ====
+map cmd+q quit
