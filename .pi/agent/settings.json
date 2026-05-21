@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.75.3",
+  "lastChangelogVersion": "0.75.4",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "low",
@@ -28,7 +28,12 @@
         "+index.ts"
       ]
     },
-    "npm:@juicesharp/rpiv-voice"
+    {
+      "source": "npm:@juicesharp/rpiv-voice",
+      "extensions": [
+        "-index.ts"
+      ]
+    }
   ],
   "theme": "catppuccin-mocha-readable",
   "treeFilterMode": "default",
