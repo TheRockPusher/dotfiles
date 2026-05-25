@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Sync selected local Pi agent folders into this dotfiles repo.
+# Sync selected local config folders into this dotfiles repo.
 # After running, review/commit/push with normal git commands.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SRC_PI="${PI_HOME:-$HOME/.pi}"
 DEST_PI="$SCRIPT_DIR/.pi"
+SRC_TMUX="${TMUX_CONFIG_HOME:-$HOME/.config/tmux}"
+DEST_TMUX="$SCRIPT_DIR/.config/tmux"
 
 folders=(
   "agent/extensions"
@@ -33,6 +35,14 @@ for folder in "${folders[@]}"; do
     echo "Skipping missing folder: $src"
   fi
 done
+
+if [[ -d "$SRC_TMUX" ]]; then
+  mkdir -p "$DEST_TMUX"
+  rsync -a --delete "$SRC_TMUX/" "$DEST_TMUX/"
+  echo "Synced .config/tmux"
+else
+  echo "Skipping missing tmux config: $SRC_TMUX"
+fi
 
 echo
 echo "Done. Review changes with:"
