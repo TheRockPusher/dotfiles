@@ -31,7 +31,7 @@
     {
       "source": "npm:@juicesharp/rpiv-voice",
       "extensions": [
-        "-index.ts"
+        "+index.ts"
       ]
     }
   ],
